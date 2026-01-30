@@ -9,13 +9,13 @@ public class EventThrower
         this.domainEvents = domainEvents;
     }
 
-    public void ThrowEvent()
+    public void ThrowAlfa()
     {
-        domainEvents.ThrownEvent.Invoke();
+        domainEvents.AlfaThrown.Invoke();
     }
 }
 
 public class DomainEvents
 {
-    public readonly Action ThrownEvent = delegate { };
+    public readonly Action AlfaThrown = delegate { };
 }
