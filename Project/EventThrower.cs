@@ -1,10 +1,10 @@
 namespace Project;
 
-public class EventThrower
+public class Shop
 {
     readonly DomainEvents domainEvents;
 
-    public EventThrower(DomainEvents domainEvents)
+    public Shop(DomainEvents domainEvents)
     {
         this.domainEvents = domainEvents;
     }
@@ -13,15 +13,25 @@ public class EventThrower
     {
         domainEvents.FarmBought.Invoke();
     }
+}
 
-    public void ClickGoldenCookie()
+public class Achievements
+{
+    readonly DomainEvents domainEvents;
+
+    public Achievements(DomainEvents domainEvents)
     {
-        domainEvents.GoldenCookieClicked.Invoke();
+        this.domainEvents = domainEvents;
+    }
+
+    public void TriggerRandomAchievement()
+    {
+        domainEvents.RandomAchievementTriggered.Invoke();
     }
 }
 
 public class DomainEvents
 {
     public readonly Action FarmBought = delegate { };
-    public readonly Action GoldenCookieClicked = delegate { };
+    public readonly Action RandomAchievementTriggered = delegate { };
 }
