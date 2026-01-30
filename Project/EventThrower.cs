@@ -2,17 +2,20 @@ namespace Project;
 
 public class EventThrower
 {
+    readonly DomainEvents domainEvents;
+
+    public EventThrower(DomainEvents domainEvents)
+    {
+        this.domainEvents = domainEvents;
+    }
+
     public void ThrowEvent()
     {
-        DomainEvents.ThrownEvent.Invoke();
+        domainEvents.ThrownEvent.Invoke();
     }
 }
 
-
-public static class DomainEvents
+public class DomainEvents
 {
-    public static readonly Action ThrownEvent = delegate { };
+    public readonly Action ThrownEvent = delegate { };
 }
-
-
-
