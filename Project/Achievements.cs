@@ -7,15 +7,16 @@ public class Achievements
     public Achievements(DomainEvents domainEvents)
     {
         this.domainEvents = domainEvents;
-        domainEvents.FarmBought += OnFarmBought;
+        domainEvents.SubscribeToFarmBought(OnFarmBought);
     }
 
-    private void OnFarmBought()
+    private void OnFarmBought(FarmBought farmBought)
     {
         TriggerFirstFarmAchievement();
     }
 
-    public void TriggerFirstFarmAchievement()
+
+    private void TriggerFirstFarmAchievement()
     {
         domainEvents.FirstFarmAchievementTriggered.Invoke();
     }

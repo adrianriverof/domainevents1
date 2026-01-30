@@ -11,6 +11,6 @@ public class Shop
 
     public void BuyFarm()
     {
-        domainEvents.FarmBought.Invoke();
+        domainEvents.RaiseFarmBought(new FarmBought());
     }
 }

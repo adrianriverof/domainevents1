@@ -2,7 +2,28 @@ namespace Project;
 
 public class DomainEvents
 {
-    public Action FarmBought = delegate { };
-    public Action FirstFarmAchievementTriggered = delegate { };
+    private readonly List<Action<FarmBought>> _farmBoughtActions = new();
+
+    public Action FirstFarmAchievementTriggered = delegate { }; 
+    
+    
+    public void RaiseFarmBought(FarmBought ev)
+    {
+        foreach (var action in _farmBoughtActions)
+        {
+            action(ev);
+        }
+    }
+
+    public void SubscribeToFarmBought(Action<FarmBought> action)
+    {
+        _farmBoughtActions.Add(action);
+    }
+    
 }
 
+
+public struct FarmBought
+{
+    
+}
