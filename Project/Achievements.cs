@@ -9,8 +9,8 @@ public class Achievements
         this.domainEvents = domainEvents;
     }
 
-    public void TriggerRandomAchievement()
+    public void TriggerFirstFarmAchievement()
     {
-        domainEvents.RandomAchievementTriggered.Invoke();
+        domainEvents.FirstFarmAchievementTriggered.Invoke();
     }
 }
