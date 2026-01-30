@@ -9,25 +9,19 @@ public class EventThrower
         this.domainEvents = domainEvents;
     }
 
-    public void ThrowAlfa()
+    public void BuyFarm()
     {
-        domainEvents.AlfaThrown.Invoke();
+        domainEvents.FarmBought.Invoke();
     }
 
-    public void ThrowBravo()
+    public void ClickGoldenCookie()
     {
-        domainEvents.BravoThrown.Invoke();
-    }
-
-    public void ThrowCharlie()
-    {
-        domainEvents.CharlieThrown.Invoke();
+        domainEvents.GoldenCookieClicked.Invoke();
     }
 }
 
 public class DomainEvents
 {
-    public readonly Action AlfaThrown = delegate { };
-    public readonly Action BravoThrown = delegate { };
-    public readonly Action CharlieThrown = delegate { };
+    public readonly Action FarmBought = delegate { };
+    public readonly Action GoldenCookieClicked = delegate { };
 }
