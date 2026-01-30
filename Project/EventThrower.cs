@@ -13,9 +13,21 @@ public class EventThrower
     {
         domainEvents.AlfaThrown.Invoke();
     }
+
+    public void ThrowBravo()
+    {
+        domainEvents.BravoThrown.Invoke();
+    }
+
+    public void ThrowCharlie()
+    {
+        domainEvents.CharlieThrown.Invoke();
+    }
 }
 
 public class DomainEvents
 {
     public readonly Action AlfaThrown = delegate { };
+    public readonly Action BravoThrown = delegate { };
+    public readonly Action CharlieThrown = delegate { };
 }
