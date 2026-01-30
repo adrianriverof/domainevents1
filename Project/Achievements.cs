@@ -7,6 +7,12 @@ public class Achievements
     public Achievements(DomainEvents domainEvents)
     {
         this.domainEvents = domainEvents;
+        domainEvents.FarmBought += OnFarmBought;
+    }
+
+    private void OnFarmBought()
+    {
+        TriggerFirstFarmAchievement();
     }
 
     public void TriggerFirstFarmAchievement()
