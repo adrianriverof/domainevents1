@@ -12,9 +12,11 @@ public class Achievements
 
     private void OnFarmBought(FarmBought farmBought)
     {
-        TriggerFirstFarmAchievement();
+        if (farmBought.IsFirst)
+        {
+            TriggerFirstFarmAchievement();
+        }
     }
-
 
     private void TriggerFirstFarmAchievement()
     {

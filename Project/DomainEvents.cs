@@ -4,9 +4,8 @@ public class DomainEvents
 {
     private readonly List<Action<FarmBought>> _farmBoughtActions = new();
 
-    public Action FirstFarmAchievementTriggered = delegate { }; 
-    
-    
+    public Action FirstFarmAchievementTriggered = delegate { };
+
     public void RaiseFarmBought(FarmBought ev)
     {
         foreach (var action in _farmBoughtActions)
@@ -19,11 +18,14 @@ public class DomainEvents
     {
         _farmBoughtActions.Add(action);
     }
-    
 }
-
 
 public struct FarmBought
 {
-    
+    public bool IsFirst { get; }
+
+    public FarmBought(bool isFirst)
+    {
+        IsFirst = isFirst;
+    }
 }
