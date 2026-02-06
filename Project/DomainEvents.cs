@@ -4,39 +4,31 @@ public class DomainEvents
 {
     private readonly List<Action<FarmBought>> _farmBoughtActions = new();
     private readonly List<Action<FirstFarmAchieved>> _firstFarmAchievedActions = new();
+    private readonly List<Action<DomainEvent>> _domainEvents = new();
 
-    public void RaiseFarmBought(FarmBought ev)
+    public void Raise<T>(T ev) where T : DomainEvent
     {
-        foreach (var action in _farmBoughtActions)
+        foreach (var action in _domainEvents.OfType<Action<T>>())
         {
             action(ev);
         }
     }
 
-    public void RaiseFirstFarmAchieved(FirstFarmAchieved ev)
+    public void Subscribe<T>(Action<T> action) where T : DomainEvent
     {
-        foreach (var action in _firstFarmAchievedActions)
-        {
-            action(ev);
-        }
-    }
-
-    public void SubscribeToFarmBought(Action<FarmBought> action)
-    {
-        _farmBoughtActions.Add(action);
-    }
-
-    public void SubscribeToFirstFarmAchieved(Action<FirstFarmAchieved> action)
-    {
-        _firstFarmAchievedActions.Add(action);
+        _domainEvents.Add(action);
     }
 }
 
-public struct FirstFarmAchieved
+public abstract class DomainEvent
 {
 }
 
-public struct FarmBought
+public class FirstFarmAchieved : DomainEvent
+{
+}
+
+public class FarmBought : DomainEvent
 {
     public bool IsFirst { get; }
 

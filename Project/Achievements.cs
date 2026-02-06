@@ -7,7 +7,7 @@ public class Achievements
     public Achievements(DomainEvents domainEvents)
     {
         this.domainEvents = domainEvents;
-        domainEvents.SubscribeToFarmBought(OnFarmBought);
+        domainEvents.Subscribe<FarmBought>(OnFarmBought);
     }
 
     private void OnFarmBought(FarmBought farmBought)
@@ -20,6 +20,6 @@ public class Achievements
 
     private void TriggerFirstFarmAchievement()
     {
-        domainEvents.RaiseFirstFarmAchieved(new FirstFarmAchieved());
+        domainEvents.Raise(new FirstFarmAchieved());
     }
 }
