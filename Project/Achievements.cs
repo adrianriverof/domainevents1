@@ -20,6 +20,6 @@ public class Achievements
 
     private void TriggerFirstFarmAchievement()
     {
-        domainEvents.FirstFarmAchievementTriggered.Invoke();
+        domainEvents.RaiseFirstFarmAchieved(new FirstFarmAchieved());
     }
 }
