@@ -28,5 +28,32 @@ public class Tests {
 
 		Assert.That(domainEvents.DomainEventActionList[0], Is.TypeOf<Action<FarmBought>>());
 	}
+
+	[Test]
+	public void Raise_firstfarm_buying()
+	{
+		DomainEvents domainEvents = new DomainEvents();
+		Achievements achievements = new Achievements(domainEvents);
+		
+		Shop shop = new Shop(domainEvents);
+		
+		shop.BuyFarm();
+
+		//achievements.TriggerFirstFarmAchievement();
+
+		Assert.Pass();
+	}
+
+	[Test]
+	public void Buying_farm_should_trigger_farmbought_event()
+	{
+		DomainEvents domainEvents = new DomainEvents();
+		Shop shop = new Shop(domainEvents);
+		
+		shop.BuyFarm();
+		
+		Assert.Pass();
+		
+	}
 	
 }

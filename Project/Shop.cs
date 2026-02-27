@@ -11,6 +11,7 @@ public class Shop
 
     public void BuyFarm()
     {
+        Console.WriteLine("Shop: Se compra una granja");
         domainEvents.Raise(new FarmBought(true));
     }
 }

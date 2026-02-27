@@ -12,13 +12,15 @@ public class Achievements
 
     private void OnFarmBought(FarmBought farmBought)
     {
+        Console.WriteLine("A: OnFarmbought is executed");
         if (farmBought.IsFirst)
         {
+            Console.WriteLine("A: Farmbought is first");
             TriggerFirstFarmAchievement();
         }
     }
 
-    private void TriggerFirstFarmAchievement()
+    public void TriggerFirstFarmAchievement()
     {
         domainEvents.Raise(new FirstFarmAchieved());
     }
