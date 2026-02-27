@@ -6,6 +6,8 @@ public class DomainEvents
     private readonly List<Action<FirstFarmAchieved>> _firstFarmAchievedActions = new();
     private readonly List<Action<DomainEvent>> _domainEvents = new();
 
+    public List<Action<DomainEvent>> DomainEventActionList => _domainEvents;
+
     public void Raise<T>(T ev) where T : DomainEvent
     {
         foreach (var action in _domainEvents.OfType<Action<T>>())
