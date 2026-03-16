@@ -2,39 +2,32 @@ using Project;
 
 namespace Tests;
 
-public class Tests {
-    [SetUp]
-    public void Setup() { }
-
+public class Tests
+{
     [Test]
-    public void Test1() {
-        Assert.Pass();
-    }
-
-    [Test]
-    public void Subscription_doesnt_break()
-    {
-        DomainEvents domainEvents = new DomainEvents();
-        _ = new Achievements(domainEvents);
-		
-        Assert.Pass();
-    }
-
-    [Test]
-    public void Event_list_contains_Farmbought()
-    {
-        DomainEvents domainEvents = new DomainEvents();
-        _ = new Achievements(domainEvents);
-
-        Assert.That(domainEvents.DomainEventActionList[0], Is.TypeOf<Action<FarmBought>>());
-    }
-
-    [Test]
-    public void isnull()
+    public void AchievementTest()
     {
         var domainEvents = new DomainEvents();
-        _ = new Achievements(domainEvents);
-        Assert.That(domainEvents.DomainEventActionList[0], Is.Not.Null);
+        var achievements = new MockAchievements(domainEvents);
+        var shop = new Shop(domainEvents);
+
+        shop.BuyFarm();
+
+        Assert.That(achievements.HasBeenExecuted, Is.True);
     }
-	
+
+    class MockAchievements : Dasdfgqsdfg
+    {
+        public bool HasBeenExecuted;
+
+        public MockAchievements(DomainEvents domainEvents)
+        {
+            domainEvents.Subscribe<FarmBought>(OnFarmBought);
+        }
+
+        public void OnFarmBought(FarmBought farmBought)
+        {
+            HasBeenExecuted = true;
+        }
+    }
 }

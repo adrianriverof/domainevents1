@@ -1,6 +1,6 @@
 ﻿namespace Project;
 
-public class Achievements
+public class Achievements : Dasdfgqsdfg
 {
     readonly DomainEvents domainEvents;
 
@@ -10,7 +10,7 @@ public class Achievements
         domainEvents.Subscribe<FarmBought>(OnFarmBought);
     }
 
-    private void OnFarmBought(FarmBought farmBought)
+    public void OnFarmBought(FarmBought farmBought)
     {
         Console.WriteLine("A: OnFarmbought is executed");
         if (farmBought.IsFirst)
@@ -24,4 +24,9 @@ public class Achievements
     {
         domainEvents.Raise(new FirstFarmAchieved());
     }
+}
+
+public interface Dasdfgqsdfg
+{
+    void OnFarmBought(FarmBought farmBought);
 }
