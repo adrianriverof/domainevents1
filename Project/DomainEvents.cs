@@ -8,30 +8,35 @@ public class DomainEvents
 
     public void Raise<T>(T ev) where T : DomainEvent
     {
-        foreach (var action in _domainEvents.OfType<Action<T>>())
+        foreach (var action in _domainEvents)
         {
-            action(ev);
+            if (action.GetType() == typeof(T))
+            {
+                action(ev);
+            }
         }
     }
 
     public void Subscribe<T>(Action<T> action) where T : DomainEvent
     {
-        Action<DomainEvent> apply = ev => action.Invoke((T)ev); 
+        Action<DomainEvent> apply = ev => action.Invoke((T)ev);
         _domainEvents.Add(apply);
     }
 
     public void Subscribe_new(Action<DomainEvent> ev)
     {
-        
     }
 
     public void Raise_new(DomainEvent ev)
     {
-        
     }
 }
 
 public abstract class DomainEvent
+{
+}
+
+public class FactoryBought : DomainEvent
 {
 }
 
