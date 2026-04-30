@@ -2,11 +2,8 @@
 
 public class Achievements : FarmBoughtListener
 {
-    readonly DomainEvents domainEvents;
-
     public Achievements(DomainEvents domainEvents)
     {
-        this.domainEvents = domainEvents;
         domainEvents.Subscribe<FarmBought>(OnFarmBought);
     }
 
