@@ -13,16 +13,6 @@ public class Achievements : Dasdfgqsdfg
     public void OnFarmBought(FarmBought farmBought)
     {
         Console.WriteLine("A: OnFarmbought is executed");
-        if (farmBought.IsFirst)
-        {
-            Console.WriteLine("A: Farmbought is first");
-            TriggerFirstFarmAchievement();
-        }
-    }
-
-    public void TriggerFirstFarmAchievement()
-    {
-        domainEvents.Raise(new FirstFarmAchieved());
     }
 }
 
