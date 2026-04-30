@@ -5,7 +5,7 @@ namespace Tests;
 public class Tests
 {
     [Test]
-    public void AchievementTest()
+    public void BuyFarmTriggersFarmBoughtAchievement()
     {
         var domainEvents = new DomainEvents();
         var achievements = new MockAchievements(domainEvents);
@@ -13,12 +13,12 @@ public class Tests
 
         shop.BuyFarm();
 
-        Assert.That(achievements.HasBeenExecuted, Is.True);
+        Assert.That(achievements.HasFarmBoughtBeenTriggered, Is.True);
     }
 
     class MockAchievements : FarmBoughtListener
     {
-        public bool HasBeenExecuted;
+        public bool HasFarmBoughtBeenTriggered;
 
         public MockAchievements(DomainEvents domainEvents)
         {
@@ -27,7 +27,7 @@ public class Tests
 
         public void OnFarmBought(FarmBought farmBought)
         {
-            HasBeenExecuted = true;
+            HasFarmBoughtBeenTriggered = true;
         }
     }
 }
