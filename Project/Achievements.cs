@@ -1,6 +1,6 @@
 ﻿namespace Project;
 
-public class Achievements : Dasdfgqsdfg
+public class Achievements : FarmBoughtListener
 {
     readonly DomainEvents domainEvents;
 
@@ -16,7 +16,7 @@ public class Achievements : Dasdfgqsdfg
     }
 }
 
-public interface Dasdfgqsdfg
+public interface FarmBoughtListener
 {
     void OnFarmBought(FarmBought farmBought);
 }

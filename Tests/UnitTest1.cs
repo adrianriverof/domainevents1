@@ -16,7 +16,7 @@ public class Tests
         Assert.That(achievements.HasBeenExecuted, Is.True);
     }
 
-    class MockAchievements : Dasdfgqsdfg
+    class MockAchievements : FarmBoughtListener
     {
         public bool HasBeenExecuted;
 
