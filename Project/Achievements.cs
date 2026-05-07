@@ -2,7 +2,7 @@
 
 public class Achievements : FarmBoughtListener, FactoryBoughtListener
 {
-    public Achievements(DomainEvents domainEvents)
+    public Achievements(WriteEventBus domainEvents)
     {
         domainEvents.Subscribe<FarmBought>(OnFarmBought);
         domainEvents.Subscribe<FactoryBought>(OnFactoryBought);

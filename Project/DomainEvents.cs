@@ -1,6 +1,11 @@
 namespace Project;
 
-public class DomainEvents
+public interface WriteEventBus
+{
+    void Subscribe<T>(Action<T> action) where T : DomainEvent;
+}
+
+public class DomainEvents : WriteEventBus
 {
     private readonly List<object> _domainEvents = new();
 

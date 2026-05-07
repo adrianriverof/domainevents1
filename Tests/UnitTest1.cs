@@ -67,7 +67,7 @@ public class Tests
         public bool HasFarmBoughtBeenTriggered;
         public bool HasFactoryBoughtBeenTriggered;
 
-        public MockAchievements(DomainEvents domainEvents)
+        public MockAchievements(WriteEventBus domainEvents)
         {
             domainEvents.Subscribe<FarmBought>(OnFarmBought);
             domainEvents.Subscribe<FactoryBought>(OnFactoryBought);
