@@ -2,9 +2,9 @@
 
 public class Shop
 {
-    readonly DomainEvents domainEvents;
+    readonly ReadOnlyEventBus domainEvents;
 
-    public Shop(DomainEvents domainEvents)
+    public Shop(ReadOnlyEventBus domainEvents)
     {
         this.domainEvents = domainEvents;
     }

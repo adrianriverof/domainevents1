@@ -5,7 +5,12 @@ public interface WriteEventBus
     void Subscribe<T>(Action<T> action) where T : DomainEvent;
 }
 
-public class DomainEvents : WriteEventBus
+public interface ReadOnlyEventBus
+{
+    void Raise<T>(T ev) where T : DomainEvent;
+}
+
+public class DomainEvents : WriteEventBus, ReadOnlyEventBus
 {
     private readonly List<object> _domainEvents = new();
 
