@@ -24,7 +24,7 @@ public class Tests
         var shop = new Shop(domainEvents);
 
         shop.BuyFactory();
-        
+
         Assert.That(achievements.HasFactoryBoughtBeenTriggered, Is.True);
     }
 
@@ -36,7 +36,7 @@ public class Tests
         var shop = new Shop(domainEvents);
 
         shop.BuyFactory();
-        
+
         Assert.That(achievements.HasFarmBoughtBeenTriggered, Is.False);
     }
 
@@ -48,8 +48,18 @@ public class Tests
         var shop = new Shop(domainEvents);
 
         shop.BuyFarm();
-        
+
         Assert.That(achievements.HasFactoryBoughtBeenTriggered, Is.False);
+    }
+
+    [Test]
+    public void NothingGetsTriggeredWhenNothingHappens()
+    {
+        var domainEvents = new DomainEvents();
+        var achievements = new MockAchievements(domainEvents);
+
+        Assert.That(achievements.HasFactoryBoughtBeenTriggered, Is.False);
+        Assert.That(achievements.HasFarmBoughtBeenTriggered, Is.False);
     }
 
     class MockAchievements : FarmBoughtListener, FactoryBoughtListener
