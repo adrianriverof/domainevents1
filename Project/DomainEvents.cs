@@ -2,23 +2,19 @@ namespace Project;
 
 public class DomainEvents
 {
-    private readonly List<Action<DomainEvent>> _domainEvents = new();
-
-    public void Raise<T>(T ev) where T : DomainEvent
-    {
-        foreach (var action in _domainEvents)
-        {
-            if (action.GetType() == typeof(T))
-            {
-                action(ev);
-            }
-        }
-    }
+    private readonly List<object> _domainEvents = new();
 
     public void Subscribe<T>(Action<T> action) where T : DomainEvent
     {
-        Action<DomainEvent> apply = ev => action.Invoke((T)ev);
-        _domainEvents.Add(apply);
+        _domainEvents.Add(action);
+    }
+
+    public void Raise<T>(T ev) where T : DomainEvent
+    {
+        foreach (var action in _domainEvents.OfType<Action<T>>())
+        {
+            action(ev);
+        }
     }
 
     public void Subscribe_new(Action<DomainEvent> ev)
