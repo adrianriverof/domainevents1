@@ -16,14 +16,6 @@ public class DomainEvents
             action(ev);
         }
     }
-
-    public void Subscribe_new(Action<DomainEvent> ev)
-    {
-    }
-
-    public void Raise_new(DomainEvent ev)
-    {
-    }
 }
 
 public abstract class DomainEvent
@@ -34,16 +26,6 @@ public class FactoryBought : DomainEvent
 {
 }
 
-public class FirstFarmAchieved : DomainEvent
-{
-}
-
 public class FarmBought : DomainEvent
 {
-    public bool IsFirst { get; }
-
-    public FarmBought(bool isFirst)
-    {
-        IsFirst = isFirst;
-    }
 }
