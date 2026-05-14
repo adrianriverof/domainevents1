@@ -12,18 +12,19 @@ public interface ReadOnlyEventBus
 
 public class DomainEvents : WriteEventBus, ReadOnlyEventBus
 {
-    private readonly List<object> _domainEvents = new();
+    private readonly Dictionary<Type, List<object>> _domainEvents = new(); 
 
     public void Subscribe<T>(Action<T> action) where T : DomainEvent
     {
-        _domainEvents.Add(action);
+        _domainEvents.TryAdd(typeof(T), new List<object>());
+        _domainEvents[typeof(T)].Add(action);
     }
 
     public void Raise<T>(T ev) where T : DomainEvent
     {
-        foreach (var action in _domainEvents.OfType<Action<T>>())
+        foreach (var action in _domainEvents[typeof(T)])
         {
-            action(ev);
+            ((Action<T>)action)(ev);
         }
     }
 }
